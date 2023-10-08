@@ -23,9 +23,9 @@ def create():
 @app.route('/login', methods=['POST'])
 def login():
     try:
-        json_request = request.get_json()
-        usuario = Usuario.from_map(json_request)
-        usuario_id = sign_in(usuario)
+        body = request.get_json()
+        #usuario = Usuario.from_map(json_request)
+        usuario_id = sign_in(body)
         return usuario_id, 200
     except OSError as e:
         return e.args, 404

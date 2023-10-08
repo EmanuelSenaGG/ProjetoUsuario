@@ -28,8 +28,8 @@ def list_users():
 def login_firebase(body):
     try:
         usuario = Usuario.from_map(body)
-        auth.sign_in_with_email_and_password(email = usuario.email, password=usuario.senha)
-        return True
+        token = auth.sign_in_with_email_and_password(email = usuario.email, password=usuario.senha)
+        return token
     except:
         raise Exception("Usuario ou senha incorretos!")
 

@@ -6,9 +6,9 @@ def sign_up(body):
      except:
        raise
 
-def sign_in(usuario):
+def sign_in(body):
   try:
-    return login_firebase(usuario.email, usuario.senha)
+    return login_firebase(body)
   except:
      raise
    
