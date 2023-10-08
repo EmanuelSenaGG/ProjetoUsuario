@@ -28,11 +28,14 @@ def login():
         body = request.get_json()
         #usuario = Usuario.from_map(json_request)
         usuario = sign_in(body)
-        return usuario, 200
+        response = jsonify(usuario)
+        response.headers['Access-Control-Allow-Origin'] = '*'  # Permite todas as origens
+        response.headers['Content-Type'] = 'application/json' 
+       
+        return response, 200
     except OSError as e:
         return e.args, 404
-    except Exception as e:
-        return e.args[0], 400 
+  
 
     
 
