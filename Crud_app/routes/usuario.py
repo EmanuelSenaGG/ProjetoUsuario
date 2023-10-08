@@ -16,7 +16,7 @@ def create():
         response_data = {
             "message": "Usuário cadastrado com sucesso",
         }
-        return  jsonify(usuario), 200
+        return  usuario, 200
  except Exception as e:
         return e.args, 400
     

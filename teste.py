@@ -26,5 +26,5 @@ def login():
     except:
         print('Usuario ou senha incorreto')
 
-cadastrar()       
+#cadastrar()       
 #login()
