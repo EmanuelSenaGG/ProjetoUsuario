@@ -13,10 +13,18 @@ def create():
         body = request.get_json()
         
         usuario = sign_up(body)
-        # Crie uma resposta JSON com os cabeçalhos desejados
-        response = jsonify(usuario)
-        response.headers['Access-Control-Allow-Origin'] = '*'  # Permite todas as origens
-        response.headers['Content-Type'] = 'application/json' 
+        
+        response = {
+        'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+        },
+        'body': usuario
+    }
+        
+      
        
         return response, 200
  except Exception as e:
@@ -28,16 +36,22 @@ def login():
         body = request.get_json()
         #usuario = Usuario.from_map(json_request)
         usuario = sign_in(body)
-        response = jsonify(usuario)
-        response.headers['Access-Control-Allow-Origin'] = '*'  # Permite todas as origens
-        response.headers['Content-Type'] = 'application/json' 
+        response = {
+        'statusCode': 200,
+        'headers': {
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
+        },
+        'body': usuario
+    }
+        
+     
        
         return response, 200
     except OSError as e:
         return e.args, 404
   
-
-    
 
     
 @app.route('/usuarios', methods=['GET'])
