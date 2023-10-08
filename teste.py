@@ -2,13 +2,13 @@ import requests, json
 from Crud_app.models.Db import uri_create_user
 from config import auth
 
-dado ={
+dado = {
     "Nome": "Carlos",
-    "Email":"Carlos234@gmail.com",
+    "Email": "Carlos234@gmail.com",
     "Senha": "778899"
     }
 
-body= json.dumps(dado)
+body = json.dumps(dado)
 #req =requests.post(uri_create_user,data=body)
 
 def cadastrar():
@@ -26,5 +26,5 @@ def login():
     except:
         print('Usuario ou senha incorreto')
 
-#cadastrar()       
+cadastrar()       
 #login()

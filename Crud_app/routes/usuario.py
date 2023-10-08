@@ -11,11 +11,12 @@ from Crud_app.business.usuario import sign_in, get_users, sign_up
 def create():
  try:
         body = request.get_json()
+        
         usuario = sign_up(body)
         response_data = {
             "message": "Usuário cadastrado com sucesso",
         }
-        return  jsonify(response_data), 200
+        return  jsonify(usuario), 200
  except Exception as e:
         return e.args, 400
     
