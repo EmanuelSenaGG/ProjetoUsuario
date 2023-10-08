@@ -5,13 +5,13 @@ from Crud_app.models.usuario import Usuario
 from config import auth
 from firebase_admin import auth as admin_auth
 
-def create_firebase(body):
+def create_firebase(data):
     try:
-        usuario = Usuario.from_map(body)
-        auth.create_user_with_email_and_password(email = usuario.email, password = usuario.senha)
-        headers = {'Content-Type': 'application/json'}
-        body = json.dumps(body)
-        request = requests.post(uri_create_user, data=body, headers=headers)
+        usuario = Usuario.from_map(data)
+        #token = auth.create_user_with_email_and_password(email = usuario.email, password = usuario.senha)
+        headers = {"content-type": "application/json; charset=UTF-8"}
+        body = json.dumps(data)
+        request = requests.post(uri_create_user, headers=headers, data=body) 
         return  request.text
     except Exception as e:
         raise Exception("Já existe uma conta com esse email!")

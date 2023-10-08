@@ -13,10 +13,12 @@ def create():
         body = request.get_json()
         
         usuario = sign_up(body)
-        response_data = {
-            "message": "Usuário cadastrado com sucesso",
-        }
-        return  usuario, 200
+        # Crie uma resposta JSON com os cabeçalhos desejados
+        response = jsonify(usuario)
+        response.headers['Access-Control-Allow-Origin'] = '*'  # Permite todas as origens
+        response.headers['Content-Type'] = 'application/json' 
+       
+        return response, 200
  except Exception as e:
         return e.args, 400
     
@@ -25,8 +27,8 @@ def login():
     try:
         body = request.get_json()
         #usuario = Usuario.from_map(json_request)
-        usuario_id = sign_in(body)
-        return usuario_id, 200
+        usuario = sign_in(body)
+        return usuario, 200
     except OSError as e:
         return e.args, 404
     except Exception as e:
