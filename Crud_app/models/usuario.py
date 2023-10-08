@@ -3,7 +3,7 @@ import json
 
 
 class Usuario:
-    def __init__(self, Id, email, senha, nome):
+    def __init__(self, email, senha, nome, Id):
         self.email = email
         self.senha = senha
         self.nome = nome

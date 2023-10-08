@@ -12,8 +12,10 @@ def create():
  try:
         body = request.get_json()
         usuario = sign_up(body)
-        usuarioId = Usuario.from_map(usuario)
-        return str(usuarioId.Id), 201
+        response_data = {
+            "message": "Usuário cadastrado com sucesso",
+        }
+        return  jsonify(response_data), 200
  except Exception as e:
         return e.args, 400
     
@@ -35,7 +37,14 @@ def login():
 @app.route('/usuarios', methods=['GET'])
 def get_all_users():
     try:
-        users = get_users()
+        users = get_users() 
         return users
+    except Exception as e:
+        return e.args, 400
+    
+@app.route('/index', methods=['GET'])
+def home():
+    try:
+        return 'olaaaaaaaaa'
     except Exception as e:
         return e.args, 400
