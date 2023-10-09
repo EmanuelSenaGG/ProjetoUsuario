@@ -58,6 +58,8 @@ def login():
 def get_all_users():
     try:
         users = get_users() 
+        
+        
         return users
     except Exception as e:
         return e.args, 400

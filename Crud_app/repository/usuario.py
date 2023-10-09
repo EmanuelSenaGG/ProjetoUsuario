@@ -19,7 +19,13 @@ def create_firebase(data):
 def list_users():
     try:
         request = requests.get(uri_get_users)
-        return request.text
+        dados = json.loads(request.text)
+        resultados = []
+        for i in dados:
+            resultados.append((dados[i]['Nome'],dados[i]['Email'], dados[i]['Senha']))
+        
+        data = json.dumps(resultados)
+        return data
     except:
         raise Exception("Não foi possível localizar os usuários!")
 
